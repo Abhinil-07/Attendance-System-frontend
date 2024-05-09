@@ -1,9 +1,17 @@
+import { useRecoilValue } from "recoil";
 import "./App.css";
+import Auth from "./pages/Auth";
+import userAtom from "./atoms/userAtom";
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
+  const user = useRecoilValue(userAtom);
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <Routes>
+        <Route path="/" element={user ? <Dashboard /> : <Auth />} />
+      </Routes>
     </div>
   );
 }
